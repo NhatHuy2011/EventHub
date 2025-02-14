@@ -1,21 +1,27 @@
-import {StyleSheet, Text} from 'react-native';
-import React from 'react';
-import Home from './src/screens/Home/Home';
-import Introduce from './src/screens/Introduce/Introduce';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-const Stack = createNativeStackNavigator();
-function App() {
-  return (
+import { View, Text } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { IntroduceScreen } from './src/screens';
+import AuthNavigator from './src/navigators/AuthNavigator';
+import { NavigationContainer } from '@react-navigation/native';
+
+const App = () => {
+  const [isShowIntroduce, setIsShowIntroduce] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsShowIntroduce(false);
+    }, 1500);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  return isShowIntroduce ? (
+    <IntroduceScreen />
+  ) : (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Introduce"
-        screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Introduce" component={Introduce} />
-        <Stack.Screen name="Home" component={Home} />
-      </Stack.Navigator>
+      <AuthNavigator />
     </NavigationContainer>
   );
 }
-const styles = StyleSheet.create({});
-export default App;
+
+export default App

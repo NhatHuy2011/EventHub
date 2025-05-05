@@ -6,11 +6,10 @@ import {
     TouchableOpacity,
   } from 'react-native';
   import React, { ReactNode } from 'react';
-  
+  import { TextComponent } from '.';
   import { globalStyles } from '../styles/globalStyles';
   import { appColors } from '../constants/appColors';
-import { fontFamilies } from '../constants/fontFamilies';
-import TextComponent from './TextComponent';
+  import { fontFamilies } from '../constants/fontFamilies';
   
   interface Props {
     icon?: ReactNode;
@@ -53,7 +52,7 @@ import TextComponent from './TextComponent';
               backgroundColor: color
                 ? color
                 : disable
-                ? appColors.gray2
+                ? appColors.gray4
                 : appColors.primary,
               marginBottom: 17,
               width: '90%',

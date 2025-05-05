@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Image, Switch } from 'react-native';
+import { Image, Switch, Alert } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { login } from '../../lib/redux/reducers/auth.reducer';
 import {
   ButtonComponent,
   ContainerComponent,
@@ -11,23 +13,34 @@ import {
 } from '../../components';
 import { appColors } from '../../constants/appColors';
 import { Lock, Sms } from 'iconsax-react-native';
-import { Validate } from '../../utils/validate';
-// import SocialLogin from './components/Social'
 
 const LoginScreen = ({ navigation }: any) => {
-  const [email, setEmail] = useState('');
+  const dispatch = useDispatch();
+  const [username, setusername] = useState('');
   const [password, setPassword] = useState('');
   const [isRemember, setIsRemember] = useState(true);
   const [isDisable, setIsDisable] = useState(true);
 
   useEffect(() => {
-    const emailValidation = Validate.email(email);
-    if (!email || !password || !emailValidation) {
+    if (!username || !password) {
       setIsDisable(true);
     } else {
       setIsDisable(false);
     }
-  }, [email, password]);
+  }, [username, password]);
+
+  // Hàm xử lý đăng nhập
+  const handleLogin = async () => {
+    try {
+      const response = await dispatch(login({ username, password })).unwrap();
+      console.log('Đăng nhập thành công:', response);
+      Alert.alert('Thành công', 'Đăng nhập thành công');
+      navigation.navigate('EditProfile');
+    } catch (error) {
+      console.error('Lỗi đăng nhập:', error);
+      Alert.alert('Lỗi', 'username hoặc mật khẩu không đúng');
+    }
+  };
 
   return (
     <ContainerComponent isImageBackground isScroll>
@@ -53,9 +66,9 @@ const LoginScreen = ({ navigation }: any) => {
         <SpaceComponent height={21} />
 
         <InputComponent
-          value={email}
-          placeholder="Email"
-          onChange={val => setEmail(val)}
+          value={username}
+          placeholder="username"
+          onChange={val => setusername(val)}
           allowClear
           affix={<Sms size={22} color={appColors.gray} />}
         />
@@ -93,14 +106,11 @@ const LoginScreen = ({ navigation }: any) => {
 
       <SectionComponent>
         <ButtonComponent
-          disable={isDisable}
-          // onPress={handleLogin}
+          onPress={handleLogin}
           text="SIGN IN"
           type="primary"
         />
       </SectionComponent>
-
-      {/* <SocialLogin /> */}
 
       <SectionComponent>
         <RowComponent justify="center">

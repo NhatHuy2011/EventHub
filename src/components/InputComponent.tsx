@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: appColors.gray2,
+    borderColor: appColors.gray3,
     width: '100%',
     minHeight: 56,
     justifyContent: 'center',

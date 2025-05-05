@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-
+import { ArrowLeft } from 'iconsax-react-native';
 import React, { ReactNode } from 'react';
 import {
   ImageBackground,
@@ -8,12 +8,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { RowComponent, TextComponent } from '../components';
 import { appColors } from '../constants/appColors';
-import { globalStyles } from '../styles/globalStyles';
-import RowComponent from './RowComponent';
-import { ArrowLeft } from 'iconsax-react-native';
-import TextComponent from './TextComponent';
 import { fontFamilies } from '../constants/fontFamilies';
+import { globalStyles } from '../styles/globalStyles';
 
 interface Props {
   isImageBackground?: boolean;
@@ -29,7 +27,7 @@ const ContainerComponent = (props: Props) => {
 
   const headerComponent = () => {
     return (
-      <View style={{ }}>
+      <View style={{ flex: 1, paddingTop: 30 }}>
         {(title || back) && (
           <RowComponent
             styles={{

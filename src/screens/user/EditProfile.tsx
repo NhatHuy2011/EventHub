@@ -157,6 +157,13 @@ const EditProfile = () => {
         <Text style={styles.logoutButtonText}>Đăng xuất</Text>
       </TouchableOpacity>
 
+      <TouchableOpacity
+        style={styles.homeButton}
+        onPress={() => navigation.navigate('HomeScreen')}
+      >
+        <Text style={styles.homeButtonText}>Về trang chủ</Text>
+      </TouchableOpacity>
+
       {/* TabBar */}
     </View>
   );
@@ -243,7 +250,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  
+  homeButton: {
+    backgroundColor: '#34C759',
+    padding: 15,
+    borderRadius: 10,
+    marginTop: 10,
+  },
+  homeButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },  
 });
 
 export default EditProfile;

@@ -5,6 +5,8 @@ import OnboardingScreen from './auth/OnboardingScreen';
 import EditProfile from './user/EditProfile';
 import UpdateEmailScreen from './user/UpdateEmailScreen';
 import VerifyEmailScreen from './user/VerifyEmailScreen';
+import SearchListScreen from './search/SearchListScreen';
+import SearchScreen from './search/SearchScreen';
 
 export {
     HomeScreen,
@@ -14,4 +16,6 @@ export {
     EditProfile,
     UpdateEmailScreen,
     VerifyEmailScreen,
+    SearchListScreen,
+    SearchScreen,
 };
